@@ -1,2 +1,2 @@
 # login
- Login com node e mysql
+ Tela de login simples usando node e mysql
