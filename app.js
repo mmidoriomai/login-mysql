@@ -6,7 +6,8 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT;
 
-//criando a conexão com o banco
+//Configura a conexão com o Banco de Dados
+//Não esqueça de criar seu arquivo .env
 const db = mysql.createConnection({
   host: process.env.HOST,
   user: process.env.USER,
@@ -14,7 +15,7 @@ const db = mysql.createConnection({
   database: process.env.DATABASE
 });
 
-//conectando com o banco
+//Conectando ao Banco de Dados
 db.connect((error) => {
   if(error){
     console.error('Erro ao conectar ao MySQL:', error)
@@ -25,14 +26,7 @@ db.connect((error) => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-//Rota para exibir a páginda de cadastro
-app.get('/cadastro', (req, res) => {
-  res.sendFile(__dirname + '/cadastro.html');
-});
-
 // Rota para processar o login 
-// Aqui fazemos o select 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
@@ -54,7 +48,7 @@ app.post('/login', (req, res) => {
   })
 });
 
-
+//Iniciando o servidor
 app.listen(port, () => {
   console.log(`Servidor iniciado em http://localhost:${port}`);
 });
